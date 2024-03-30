@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import {Dispatch, SetStateAction, useEffect, useRef, useState, MouseEvent as ReactMouseEvent} from 'react';
 
 import MenuHeader from './MenuHeader';
 
@@ -15,20 +15,20 @@ interface SideMenuProps {
 }
 
 const SideMenu = ({setCurrentPage, currentPage}: SideMenuProps) => {
-    const [collapsed, setCollapsed] = React.useState(true);
-    const MenuRef = React.useRef<HTMLDivElement>(null);
+    const [collapsed, setCollapsed] = useState(true);
+    const MenuRef = useRef<HTMLDivElement>(null);
 
     const handleToggleCollapse = () => {
         setCollapsed(!collapsed);
     };
 
-    const handleOutsideClick = (event: MouseEvent) => {
+    const handleOutsideClick = ( event: MouseEvent) => {
         if (!MenuRef.current?.contains(event.target as Node)) {
             setCollapsed(true);
         }
     };
 
-    const handleToggleClick = (event: React.MouseEvent) => {
+    const handleToggleClick = (event: ReactMouseEvent) => {
         event.stopPropagation();
         handleToggleCollapse();
     };
@@ -39,7 +39,7 @@ const SideMenu = ({setCurrentPage, currentPage}: SideMenuProps) => {
         setCollapsed(true);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         document.addEventListener('click', handleOutsideClick);
         document.addEventListener('keydown', handleEscapePress);
         return () => {
