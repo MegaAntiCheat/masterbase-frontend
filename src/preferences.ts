@@ -17,6 +17,7 @@ async function setSettingKey(
                 'Content-Type': 'application/json',
             },
         };
+        //     headers: {
 // TODO endpoint or something
         // const response = await fetch(PREF_ENDPOINT, options);
         // console.log(response);
