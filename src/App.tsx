@@ -6,14 +6,17 @@ import {getAllSettings} from "./preferences.ts";
 import {useModal} from "./context/ModalContext.tsx";
 import {Constants} from "./constants.ts";
 import {useMinimode} from "./context/MinimodeContext.tsx";
+import SideMenu from "./components/SideMenu/SideMenu.tsx";
+import {PAGES} from "./constants/menuConstants.tsx";
+import ContentPageContainer from "./components/ContentPageContainer/ContentPageContainer.tsx";
 
 function App() {
     const {isMinimode} = useMinimode();
-    const [currentPage, setCurrentPage] = useState('/');
+    const [currentPage, setCurrentPage] = useState<PAGES>(PAGES.PREFERENCES);
     const {closeModal, openModal, modalContent} = useModal();
     const renderPage = () => {
         switch (currentPage) {
-            case '/':
+            case PAGES.PREFERENCES:
                 return <Dashboard/>;
             default:
                 return <Dashboard/>;
@@ -80,12 +83,11 @@ function App() {
         <div className="App">
             {!isMinimode && (
                 <div className="App-sidebar">
-                    {/*<SideMenu setCurrentPage={setCurrentPage} currentPage={currentPage}/>*/}
+                    <SideMenu setCurrentPage={setCurrentPage} currentPage={currentPage}/>
                 </div>
             )}
             <div className="App-content">
-                {/*<ContentPageContainer>{renderPage()}</ContentPageContainer>*/}
-                {renderPage()}
+                <ContentPageContainer>{renderPage()}</ContentPageContainer>
             </div>
         </div>
     )
