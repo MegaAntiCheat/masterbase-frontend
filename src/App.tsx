@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {setLanguage} from "../i18n";
 import {getAllSettings} from "./preferences.ts";
 import {useModal} from "./context/ModalContext.tsx";
+import {Constants} from "./constants.ts";
 
 function App() {
     const [currentPage, setCurrentPage] = useState('/');
@@ -67,7 +68,7 @@ function App() {
         // if (useFakedata) return;
 
         void verificationRoutine();
-        const intervalId = setInterval(verificationRoutine, 5000);
+        const intervalId = setInterval(verificationRoutine, Constants.verificationInterval);
 
         return () => {
             clearInterval(intervalId);
