@@ -5,8 +5,10 @@ import {setLanguage} from "../i18n";
 import {getAllSettings} from "./preferences.ts";
 import {useModal} from "./context/ModalContext.tsx";
 import {Constants} from "./constants.ts";
+import {useMinimode} from "./context/MinimodeContext.tsx";
 
 function App() {
+    const {isMinimode} = useMinimode();
     const [currentPage, setCurrentPage] = useState('/');
     const {closeModal, openModal, modalContent} = useModal();
     const renderPage = () => {
@@ -76,12 +78,11 @@ function App() {
     }, [currentPage]);
     return (
         <div className="App">
-            {/*<Modal/>*/}
-            {/*{!isMinimode && (*/}
-            {/*    <div className="App-sidebar">*/}
-            {/*        /!*<SideMenu setCurrentPage={setCurrentPage} currentPage={currentPage}/>*!/*/}
-            {/*    </div>*/}
-            {/*)}*/}
+            {!isMinimode && (
+                <div className="App-sidebar">
+                    {/*<SideMenu setCurrentPage={setCurrentPage} currentPage={currentPage}/>*/}
+                </div>
+            )}
             <div className="App-content">
                 {/*<ContentPageContainer>{renderPage()}</ContentPageContainer>*/}
                 {renderPage()}
