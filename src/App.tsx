@@ -9,7 +9,6 @@ import {useMinimode} from "./context/MinimodeContext.tsx";
 import SideMenu from "./components/SideMenu/SideMenu.tsx";
 import {PAGES} from "./constants/menuConstants.tsx";
 import ContentPageContainer from "./components/ContentPageContainer/ContentPageContainer.tsx";
-import { Modal } from './components/Modal/Modal.tsx';
 
 function App() {
     const {isMinimode} = useMinimode();
@@ -82,7 +81,6 @@ function App() {
     }, [currentPage]);
     return (
         <div className="App">
-            <Modal />
             {!isMinimode && (
                 <div className="App-sidebar">
                     <SideMenu setCurrentPage={setCurrentPage} currentPage={currentPage}/>
