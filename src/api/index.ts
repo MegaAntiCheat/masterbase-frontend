@@ -4,7 +4,6 @@ const backendUrl = 'http://localhost:8080/api/'; // proxy
 async function fetchMasterbase(endpoint: string, body?: BodyInit) {
     const data = await fetch(`${backendUrl}${endpoint}`, {'Content-Type': 'application/json', body});
     return await data.json();
-
 }
 
 export function sessionId(api_key: string, demo_name: string, fake_ip: string, map: string) {
@@ -15,12 +14,16 @@ export function closeSession(api_key: string) {
     return fetch(`${backendUrl}close_session?api_key=${api_key}`);
 }
 
-export function provision(location: string) {
+export function provision(location?: string) {
     return fetch(`${backendUrl}provision?location=${location}`);
 }
 
 export function provisionHandler() {
     return fetch(`${backendUrl}provision_handler`);
+}
+
+export function provisionUrl() {
+    return `${backendUrl}provision`;
 }
 
 export function lateBytes(api_key: string, body: BodyInit) {
