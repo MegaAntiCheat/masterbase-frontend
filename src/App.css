@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'Build';
+  src: url('../public/tf2build.ttf');
+}
+
+.App {
+  background-color: var(--dark-background);
+  display: flex;
+}
+
+.App-content {
+  flex: 1;
+  min-height: 100vh;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  cursor: 'pointer',
+}
+
+.link:hover {
+  color: #0077ff;
+}
+
+.steam-api-key {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 2rem;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #555;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

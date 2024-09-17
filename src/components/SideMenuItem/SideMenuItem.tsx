@@ -1,0 +1,55 @@
+import {ReactElement} from 'react';
+import {Book} from 'lucide-react';
+import './SideMenuItem.css';
+import Flex from "../Flex/Flex.tsx";
+import Tooltip from "../Tooltip/Tooltip.tsx";
+
+interface SideMenuItemProps {
+    title: string;
+    Icon?: ReactElement;
+    onClick?: () => void;
+    collapsed?: boolean;
+    selected?: boolean;
+}
+
+const SideMenuItem = ({
+                          title,
+                          Icon = <Book/>,
+                          onClick,
+                          collapsed = false,
+                          selected = false,
+                      }: SideMenuItemProps) => {
+    const SideMenuInner = () => {
+        return (
+            <Flex className="sm-item-flex items-center relative">
+                <div className="sm-item-icon relative ml-[3%]">{Icon}</div>
+                <div
+                    className={`sm-item-title overflow-hidden text-lg ml-[5%] ${
+                        collapsed ? 'blocked' : ''
+                    }`}
+                >
+                    {title}
+                </div>
+            </Flex>
+        );
+    };
+
+    return (
+        <div
+            className={`sm-item-outer max-h-[52px] p-3 transition-all whitespace-nowrap ${
+                selected ? 'bg-highlight/10' : 'hover:bg-highlight/5'
+            } hover:cursor-pointer ${collapsed ? 'collapsed' : ''}`}
+            onClick={onClick}
+        >
+            {collapsed ? (
+                <Tooltip content={title} direction="right">
+                    <SideMenuInner/>
+                </Tooltip>
+            ) : (
+                <SideMenuInner/>
+            )}
+        </div>
+    );
+};
+
+export default SideMenuItem as typeof SideMenuItem;
